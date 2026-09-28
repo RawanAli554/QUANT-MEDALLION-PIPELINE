@@ -1,0 +1,25 @@
+table_name: bronze_trades
+source:
+  engine: S3
+  path: http://minio:9000/bronze/trades/*/*/*.orc
+  format: ORC
+columns:
+- name: trade_id
+  type: String
+- name: security_id
+  type: String
+- name: portfolio_id
+  type: String
+- name: side
+  type: String
+- name: quantity
+  type: Int64
+- name: price
+  type: Float64
+- name: organisation_id
+  type: String
+- name: processing_date
+  type: String
+partitioning:
+  organisation_id: folder_level_1
+  processing_date: folder_level_2
